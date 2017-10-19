@@ -1,0 +1,12 @@
+filebeat.prospectors:
+  - input_type: log
+    paths:
+      - /var/log/sample/json.log
+    fields:
+      type: json-logs
+    json.message_key:
+    json.keys_under_root: false
+    json.add_error_key: true
+
+output.logstash:
+  hosts: ["logstash:5044"]

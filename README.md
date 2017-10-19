@@ -1,2 +1,14 @@
-# elk-sandbox
-Docker Composed sandbox to play with Filebeat and ELK-Stack
+# Filebeat + ELK Sandbox
+
+Run
+
+```sh
+docker-compose up
+```
+
+Manage obsolete data with Curator
+
+
+```sh
+./curator/curator.sh
+```

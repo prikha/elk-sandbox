@@ -1,0 +1,48 @@
+actions:
+  0:
+    action: forcemerge
+    description: 'Optimize log inidces, after 2 days'
+    options:
+      max_num_segments: 2
+      timeout_override: 21600
+      ignore_empty_list: True
+    filters:
+      - filtertype: pattern
+        kind: regex
+        value: '^(ls-filebeat-).*$'
+      - filtertype: age
+        source: creation_date
+        direction: older
+        unit: days
+        unit_count: 2
+  1:
+    action: close
+    description: "Close log indices after 14 days"
+    options:
+      delete_aliases: False
+      ignore_empty_list: True
+    filters:
+      - filtertype: pattern
+        kind: regex
+        value: '^(ls-filebeat-).*$'
+      - filtertype: age
+        source: creation_date
+        direction: older
+        unit: days
+        unit_count: 30
+  2:
+    action: delete_indices
+    description: "Delete log indices after 90 days"
+    options:
+      timeout_override: 300
+      ignore_empty_list: True
+      continue_if_exception: True
+    filters:
+      - filtertype: pattern
+        kind: regex
+        value: '^(ls-filebeat-).*$'
+      - filtertype: age
+        source: creation_date
+        direction: older
+        unit: days
+        unit_count: 90
