@@ -1,13 +1,17 @@
 # Filebeat + ELK Sandbox
 
-Run
+### Run
 
 ```sh
 docker-compose up
 ```
 
-Manage obsolete data with Curator
+### Visit
 
+- [Kibana](http://localhost:5601)
+- [Elasticsearch](http://localhost:9200)
+
+### Manage obsolete data with Curator
 
 ```sh
 ./curator/curator.sh
